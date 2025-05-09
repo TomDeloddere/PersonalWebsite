@@ -527,6 +527,7 @@
             z-index: 3; /* Ensure it's on top */
             color: #FF3333; /* A sporty red for the car */
             text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            transform: scaleX(-1); 
         }
 
         .interest-card.f1-effect:hover .f1-car-element {
@@ -621,10 +622,6 @@
             /* Inherit glassmorphism from its class, but ensure it's applied */
         }
 
-        .language-card-front {
-            /* z-index: 2; /* Ensure front is initially on top if needed, but backface-visibility should handle it */
-        }
-
         .language-card-back {
             transform: rotateY(180deg);
             /* Ensure text is readable */
@@ -654,8 +651,6 @@
             border-radius: 0.75rem; /* Corresponds to rounded-xl */
         }
 
-
-/* ...existing code... */
 
 
     </style>
