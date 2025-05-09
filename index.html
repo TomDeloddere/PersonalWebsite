@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tom Deloddere</title>
+    <meta name="description" content="Tom Deloddere's personal portfolio showcasing mainframe expertise, projects, experience, and passions.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-32x32.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --color-background: #0A0A1A; /* Deep space blue */
+            --color-text: #E0E7FF; /* Light blue-grey */
+            --color-primary: #64FFDA; /* Bright teal/cyan */
+            --color-secondary: #00BFFF; /* Deep sky blue */
+            --color-glass-bg: rgba(20, 30, 50, 0.65); /* Darker, more refined glass */
+            --color-glass-border: rgba(100, 255, 218, 0.35);
+            --font-primary: 'Inter', sans-serif;
+            --font-secondary: 'Orbitron', sans-serif;
+        }
+        /* Base styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a1a; /* Even darker background */
+            color: #e0e7ff; /* Lighter blue-grey for text */
+            overflow-x: hidden; /* Prevent horizontal scroll from animations */
+            line-height: 1.6; /* Improved readability */
+        }
+        .font-orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* Enhanced Glassmorphism effect */
+        .glassmorphism {
+            background: rgba(25, 35, 55, 0.6); /* Darker, more defined background */
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(100, 255, 218, 0.3); /* Teal border */
+            box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.5), /* Larger shadow */
+                        inset 0 0 20px rgba(100, 255, 218, 0.2); /* Inner teal glow */
+            transition: all 0.4s ease; /* Smooth transition for hover effects */
+        }
+
+        /* Neon text effect */
+        .neon-text {
+            color: #fff;
+            text-shadow:
+                0 0 8px #00bfff,
+                0 0 16px #00bfff,
+                0 0 32px #00bfff,
+                0 0 64px #1e90ff,
+                0 0 96px #1e90ff,
+                0 0 112px #1e90ff,
+                0 0 128px #1e90ff,
+                0 0 180px #1e90ff,
+                0 0 8px rgba(255, 255, 255, 0.95); /* Sharper white core glow */
+        }
+
+        /* Section title styling */
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            color: #64ffda; /* Bright teal/cyan */
+            position: relative;
+            display: inline-block; /* Allows pseudo-elements relative positioning */
+            padding-bottom: 15px; /* Space for the underline */
+        }
+         .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0; /* Position at the bottom */
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #64ffda, transparent);
+            animation: scanline 3s infinite linear;
+        }
+
+        @keyframes scanline {
+            0% { background-position: -80px 0; }
+            100% { background-position: 80px 0; }
+        }
+
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a1a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #64ffda;
+            border-radius: 5px;
+            border: 2px solid #1a1a2e; /* Border to match background */
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #50c8aa;
+        }
+
+        /* Fade-in and Slide-up animation for sections */
+        .fade-slide-section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        .fade-slide-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Navigation link hover/active effect */
+        .nav-link {
+            position: relative;
+            transition: color 0.4s ease, text-shadow 0.4s ease;
+            padding-bottom: 8px; /* Space for the underline effect */
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, transparent, #00bfff, #64ffda, #00bfff, transparent); /* Gradient underline */
+            background-size: 200% 100%;
+            transition: width 0.4s ease, background-position 0.8s ease;
+            opacity: 0;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+            opacity: 1;
+            background-position: -100% 0; /* Start gradient animation */
+        }
+         .nav-link:hover, .nav-link.active {
+            color: #64ffda;
+            text-shadow: 0 0 10px rgba(100, 255, 218, 0.8);
+        }
+
+        /* Enhanced Card hover effect */
+        .card-hover-effect {
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s ease;
+            position: relative; /* Needed for pseudo-elements */
+            overflow: hidden; /* Hide overflowing glow */
+            z-index: 1; /* Ensure content is above pseudo-elements */
+        }
+        .card-hover-effect::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(100, 255, 218, 0.2) 0%, transparent 60%);
+            transform: rotate(0deg);
+            opacity: 0;
+            transition: transform 0.8s ease, opacity 0.8s ease;
+             z-index: -1; /* Behind content */
+        }
+        .card-hover-effect:hover {
+            transform: translateY(-15px) perspective(1500px) rotateX(3deg) rotateY(2deg) scale(1.05);
+            box-shadow: 0 25px 50px rgba(0, 191, 255, 0.4), /* Neon blue shadow */
+                        0 0 40px rgba(100, 255, 218, 0.3); /* Teal glow */
+             background-color: rgba(35, 45, 65, 0.7); /* Slightly lighter on hover */
+        }
+         .card-hover-effect:hover::before {
+            transform: rotate(180deg);
+            opacity: 1;
+        }
+
+
+        /* Pulsing and Hover effect for hero CTA */
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(100, 255, 218, 0.7); transform: scale(1); }
+            70% { box-shadow: 0 0 0 25px rgba(100, 255, 218, 0); transform: scale(1.04); }
+            100% { box-shadow: 0 0 0 0 rgba(100, 255, 218, 0); transform: scale(1); }
+        }
+        .pulse-button {
+            animation: pulse-glow 2.5s infinite cubic-bezier(0.66, 0, 0, 1);
+            transition: background-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+         .pulse-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: skewX(-30deg);
+            transition: left 0.6s ease;
+        }
+        .pulse-button:hover {
+            background-color: #50c8aa; /* Darker shade for hover */
+            transform: scale(1.06); /* Slightly larger on hover */
+            animation-play-state: paused; /* Pause pulse */
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.8); /* Stronger glow on hover */
+        }
+         .pulse-button:hover::before {
+            left: 100%;
+        }
+
+        /* Background animated grid/nodes */
+        #hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+         #hero-background canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+
+        /* Custom styles for the interests section */
+        .interest-card {
+            transition: transform 0.4s ease, background-color 0.4s ease, box-shadow 0.4s ease;
+            overflow: hidden; /* For glow effect */
+        }
+        .interest-icon {
+            font-size: 3.5rem; /* Larger icons */
+            color: #64ffda; /* Teal color */
+            margin-bottom: 1.5rem;
+            transition: transform 0.4s ease, text-shadow 0.4s ease;
+            position: relative;
+            z-index: 2; /* Above background effects */
+        }
+         .interest-card::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle, rgba(0, 191, 255, 0.15) 0%, transparent 70%);
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+            opacity: 0;
+            z-index: 1;
+        }
+        .interest-card:hover {
+            transform: translateY(-12px) scale(1.05);
+            background-color: rgba(100, 255, 218, 0.1); /* Subtle hover highlight */
+            box-shadow: 0 15px 30px rgba(0, 191, 255, 0.3),
+                        0 0 25px rgba(100, 255, 218, 0.2);
+        }
+         .interest-card:hover .interest-icon {
+            transform: scale(1.2) rotateY(15deg); /* Icon grows and rotates */
+            text-shadow: 0 0 20px #64ffda, 0 0 30px #64ffda; /* Stronger glowing effect */
+        }
+         .interest-card:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        /* Specific Passion Integration Styles */
+        /* F1 - Speed Lines */
+        .f1-effect::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent 0%, rgba(100, 255, 218, 0.2) 50%, transparent 100%);
+            background-size: 200% 100%;
+            animation: speed-lines 1s infinite linear;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+             z-index: -1;
+        }
+        .interest-card:hover.f1-effect::after {
+            opacity: 1;
+        }
+        @keyframes speed-lines {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Chess - Grid Overlay */
+         .chess-effect::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(0deg, rgba(100, 255, 218, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(100, 255, 218, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+             z-index: -1;
+        }
+         .interest-card:hover.chess-effect::before {
+            opacity: 1;
+        }
+
+        /* Sports - Dynamic Lines (Basketball/Football) */
+        .sports-effect::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, transparent, rgba(0, 191, 255, 0.5), transparent);
+            background-size: 200% 100%;
+            animation: flow-line 2s infinite ease-in-out;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+             z-index: -1;
+        }
+         .interest-card:hover.sports-effect::after {
+            opacity: 1;
+        }
+        @keyframes flow-line {
+            0% { background-position: -100% 0; }
+            50% { background-position: 100% 0; }
+            100% { background-position: -100% 0; }
+        }
+
+
+        /* Timeline styles */
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, transparent, #64ffda, #00bfff, transparent);
+            transform: translateX(-50%);
+            animation: timeline-glow 3s infinite linear;
+        }
+         @keyframes timeline-glow {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 0% 100%; }
+        }
+        .timeline-entry {
+            position: relative;
+            width: 50%;
+            padding: 20px 0;
+        }
+        .timeline-entry:nth-child(odd) {
+            left: 0;
+            padding-right: 30px;
+            text-align: right;
+        }
+        .timeline-entry:nth-child(even) {
+            left: 50%;
+            padding-left: 30px;
+            text-align: left;
+        }
+        .timeline-entry::before {
+             content: '';
+            position: absolute;
+            top: 25px;
+            width: 15px;
+            height: 15px;
+            background-color: #64ffda;
+            border: 3px solid #0a0a1a;
+            border-radius: 50%;
+            z-index: 1;
+             box-shadow: 0 0 10px #64ffda, 0 0 20px #64ffda;
+        }
+         .timeline-entry:nth-child(odd)::before {
+            right: -10px;
+            transform: translateX(50%);
+        }
+        .timeline-entry:nth-child(even)::before {
+            left: -10px;
+            transform: translateX(-50%);
+        }
+        .timeline-content {
+            position: relative;
+             z-index: 2; /* Above timeline line */
+        }
+
+         /* Project Card Enhancements */
+         .project-card img {
+            filter: brightness(80%) contrast(1.1); /* Slightly enhance image */
+            transition: filter 0.4s ease;
+         }
+         .project-card:hover img {
+            filter: brightness(100%) contrast(1.2);
+         }
+         .project-link {
+            display: inline-flex; /* Use flex for icon alignment */
+            align-items: center;
+            justify-content: center; /* Center content */
+            background-color: #00bfff; /* Neon blue button */
+            color: #1a1a2e; /* Dark text */
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
+         }
+         .project-link:hover {
+            background-color: #1e90ff; /* Darker blue */
+            transform: translateY(-3px);
+            box-shadow: 0 0 15px rgba(0, 191, 255, 0.8), 0 5px 15px rgba(0, 0, 0, 0.3);
+         }
+         .project-link svg {
+            margin-right: 8px;
+         }
+
+
+        /* Contact Icon Hover Effect */
+        .contact-link svg {
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .contact-link:hover svg {
+            transform: scale(1.2) rotate(10deg);
+            color: #00bfff; /* Change color on hover */
+        }
+
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+                 transform: translateX(0);
+            }
+            .timeline-entry {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 40px;
+                padding-right: 0;
+                text-align: left;
+            }
+             .timeline-entry:nth-child(odd)::before,
+            .timeline-entry:nth-child(even)::before {
+                left: 13px;
+                right: auto;
+                 transform: translateX(0);
+            }
+             .section-title::after {
+                width: 50px;
+             }
+             .nav-link {
+                padding-bottom: 5px;
+             }
+             .nav-link::after {
+                height: 2px;
+             }
+        }
+
+        /* Particle effect for cursor trail */
+        #particle-container { position: fixed; top:0; left:0; width:100vw; height:100vh; pointer-events: none; z-index: 9999; }
+        .particle {
+            position: absolute; /* Changed from fixed to absolute relative to container */
+            width: 6px; height: 6px;
+            background-color: var(--color-primary);
+            border-radius: 50%;
+            animation: fade-out 0.8s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 0 5px var(--color-primary), 0 0 10px var(--color-primary);
+        }
+        @keyframes fade-out {
+            to { opacity: 0; transform: scale(0.3) translate(calc(var(--vx) * 30px), calc(var(--vy) * 30px)); }
+
+        }
+
+        /* Skill bar animation */
+        @keyframes skill-bar-fill {
+            0% { width: 0%; }
+            100% { width: var(--skill-width); } /* Use CSS variable */
+        }
+        .skill-bar-fill {
+            transition: width 1s ease-out; /* Smooth fill animation */
+             position: relative;
+             z-index: 1; /* Above animation overlay */
+             width: 0%;
+        }
+        .skill-bar-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            background-size: 200% 100%;
+            animation: skill-bar-shine 2s infinite linear;
+            opacity: 0; /* Initially hidden */
+             z-index: 2; /* Above fill */
+        }
+         @keyframes skill-bar-shine {
+            0% { background-position: -100% 0; opacity: 0; }
+            50% { opacity: 1; }
+            100% { background-position: 100% 0; opacity: 0; }
+        }
+         /* Apply shine animation only when skill bar is visible and filled */
+         .fade-slide-section.is-visible .skill-bar-animation {
+            animation-play-state: running;
+         }
+         .skill-bar-animation {
+            animation-play-state: paused; /* Pause by default */
+         }
+
+
+    </style>
+</head>
+<body class="animated-gradient-bg">
+
+    <div id="particle-container"></div>
+
+    <header class="bg-opacity-70 backdrop-blur-xl fixed top-0 left-0 right-0 z-50 glassmorphism shadow-2xl">
+        <div class="container mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-3xl md:text-4xl font-orbitron font-bold mb-4 leading-tight">
+                <span class="logo-text-main transition-all duration-500 group-hover:text-64ffda">TD</span><span class="text-64ffda logo-dot transition-all duration-500 group-hover:text-white group-hover:scale-150">.</span>
+                 <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-64ffda/50 to-transparent animate-scanline-short opacity-0 group-hover:opacity-100"></span>
+            </a>
+             <nav class="space-x-4 md:space-x-8 text-sm md:text-base font-orbitron">
+                <a href="#hero" class="nav-link text-slate-300 active">Home</a>
+                <a href="#about" class="nav-link text-slate-300">About</a>
+                <a href="#skills" class="nav-link text-slate-300">Skills</a>
+                 <a href="#passions" class="nav-link text-slate-300">Passions</a>
+                <a href="#experience" class="nav-link text-slate-300">Chronicles</a>
+                <a href="#projects" class="nav-link text-slate-300">Blueprints</a>
+                <a href="#education" class="nav-link text-slate-300">Foundations</a>
+                <a href="#contact" class="nav-link text-slate-300">Connect</a>
+            </nav>
+             <button id="mobile-menu-button" class="md:hidden text-64ffda focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+         <div id="mobile-menu" class="md:hidden bg-opacity-90 backdrop-blur-xl glassmorphism absolute top-full left-0 right-0 hidden">
+            <nav class="flex flex-col items-center space-y-4 py-4 font-orbitron">
+                <a href="#hero" class="nav-link text-slate-300 active mobile-nav-link">Home</a>
+                <a href="#about" class="nav-link text-slate-300 mobile-nav-link">About</a>
+                <a href="#skills" class="nav-link text-slate-300 mobile-nav-link">Skills</a>
+                <a href="#passions" class="nav-link text-slate-300 mobile-nav-link">Passions</a>
+                <a href="#experience" class="nav-link text-slate-300 mobile-nav-link">Chronicles</a>
+                <a href="#projects" class="nav-link text-slate-300 mobile-nav-link">Blueprints</a>
+                <a href="#education" class="nav-link text-slate-300 mobile-nav-link">Foundations</a>
+                <a href="#contact" class="nav-link text-slate-300 mobile-nav-link">Connect</a>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero" class="min-h-screen flex items-center justify-center pt-20 relative">
+         <div id="hero-background">
+             <canvas id="bgCanvas"></canvas>
+         </div>
+        <div class="text-center z-10 p-4 relative">
+            <h1 class="text-5xl md:text-8xl font-orbitron font-bold mb-4 leading-tight">
+                Tom <span class="neon-text">Deloddere</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-300 mb-3">Mainframe Specialist</span></p>
+            <p class="text-lg md:text-xl text-slate-400 mb-10 max-w-3xl mx-auto leading-relaxed">
+                Architecting robust mainframe solutions with precision and strategic thinking, fueled by a passion for speed, strategy, and teamwork.
+            </p>
+            <a href="#about" class="bg-64ffda text-0a0a1a font-bold py-3 px-10 rounded-lg text-lg transition-all duration-300 pulse-button shadow-lg inline-block">
+                Explore My Journey
+            </a>
+        </div>
+    </section>
+
+    <main class="container mx-auto px-6 py-16">
+        <section id="about" class="py-20 md:py-32 fade-slide-section">
+            <h2 class="text-4xl section-title font-bold mb-16 text-center">About <span class="text-white">Me</span></h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="glassmorphism p-8 rounded-xl shadow-2xl card-hover-effect relative overflow-hidden">
+                     <div class="absolute inset-0 opacity-10 z-0">
+                         <svg class="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <pattern id="smallGrid" width="10" height="10" patternUnits="userSpaceOnUse">
+                                <path d="M 10 0 L 0 0 L 0 10" fill="none" stroke="#64ffda" stroke-width="0.5"/>
+                            </pattern>
+                            <rect width="100%" height="100%" fill="url(#smallGrid)" />
+                         </svg>
+                     </div>
+                    <div class="relative z-10">
+                         <img src="img_cut.JPG" alt="Tom Deloddere" class="rounded-full mx-auto mb-6 w-48 h-48 border-4 border-64ffda object-cover shadow-lg">
+                        <h3 class="text-2xl font-semibold mb-3 text-center text-white">Tom Deloddere</h3>
+                        <p class="text-slate-400 text-center mb-6">Mainframe Intern at Belfius | HOGENT Student</p>
+                        <p class="text-slate-300 leading-relaxed mb-4">
+                            My name is Tom Deloddere. I am currently pursuing specialized studies in Applied Information Technology at HOGENT, with a strong focus on mainframe technologies. My practical skills are being honed through an internship at Belfius, where I work hands-on with mainframe systems, mastering JCL, COBOL, Db2, CICS, MQ, and more. As I approach graduation in June 2025, I am seeking challenging entry-level roles in mainframe technology and am fully willing to relocate for suitable opportunities.
+                        </p>
+                        <p class="text-slate-300 leading-relaxed">
+                            Beyond the technical realm, I have a passion for sharing knowledge, evidenced by my experience as a Teacher at CodeFever. There, I introduced young minds to coding fundamentals using Scratch and Minecraft, fostering essential logical thinking and problem-solving skills. My diverse interests, from the strategic depth of chess to the dynamic teamwork of basketball and football, and the precision of Formula 1, fuel my approach to technology and problem-solving.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="py-20 md:py-32 fade-slide-section">
+            <h2 class="text-4xl section-title font-bold mb-16 text-center">My <span class="text-white">Arsenal</span></h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-8 text-64ffda font-orbitron">Mainframe Technologies</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-center glassmorphism p-4 rounded-lg shadow-xl card-hover-effect">
+                            <i class="fas fa-terminal text-sky-400 mr-4 text-2xl"></i>
+                            <div class="flex-grow">
+                                <p class="font-medium text-slate-200 mb-1">Job Control Language (JCL)</p>
+                                <div class="w-full bg-slate-700 rounded-full h-3 relative overflow-hidden">
+                                    <div class="skill-bar-fill bg-gradient-to-r from-purple-400 to-pink-400 h-full rounded-full" style="width: 0%" data-width="78%"></div>
+                                     <div class="absolute inset-0 skill-bar-animation"></div>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="flex items-center glassmorphism p-4 rounded-lg shadow-xl card-hover-effect">
+                            <i class="fas fa-code text-sky-400 mr-4 text-2xl"></i>
+                            <div class="flex-grow">
+                                <p class="font-medium text-slate-200 mb-1">COBOL</p>
+                                <div class="w-full bg-slate-700 rounded-full h-3 relative overflow-hidden">
+                                    <div class="skill-bar-fill bg-gradient-to-r from-purple-400 to-pink-400 h-full rounded-full" style="width: 0%" data-width="73%"></div>
+                                    <div class="absolute inset-0 skill-bar-animation"></div>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="flex items-center glassmorphism p-4 rounded-lg shadow-xl card-hover-effect">
+                            <i class="fas fa-database text-sky-400 mr-4 text-2xl"></i>
+                            <div class="flex-grow">
+                                <p class="font-medium text-slate-200 mb-1">Db2</p>
+                                <div class="w-full bg-slate-700 rounded-full h-3 relative overflow-hidden">
+                                    <div class="skill-bar-fill bg-gradient-to-r from-purple-400 to-pink-400 h-full rounded-full" style="width: 0%" data-width="90%"></div>
+                                     <div class="absolute inset-0 skill-bar-animation"></div>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="flex items-center glassmorphism p-4 rounded-lg shadow-xl card-hover-effect">
+                            <i class="fas fa-network-wired text-sky-400 mr-4 text-2xl"></i>
+                            <div class="flex-grow">
+                                <p class="font-medium text-slate-200 mb-1">CICS</p>
+                                <div class="w-full bg-slate-700 rounded-full h-3 relative overflow-hidden">
+                                    <div class="skill-bar-fill bg-gradient-to-r from-purple-400 to-pink-400 h-full rounded-full" style="width: 0%" data-width="65%"></div>
+                                     <div class="absolute inset-0 skill-bar-animation"></div>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="flex items-center glassmorphism p-4 rounded-lg shadow-xl card-hover-effect">
+                            <i class="fas fa-server text-sky-400 mr-4 text-2xl"></i>
+                            <div class="flex-grow">
+                                <p class="font-medium text-slate-200 mb-1">z/OS</p>
+                                <div class="w-full bg-slate-700 rounded-full h-3 relative overflow-hidden">
+                                    <div class="skill-bar-fill bg-gradient-to-r from-purple-400 to-pink-400 h-full rounded-full" style="width: 0%" data-width="80%"></div>
+                                     <div class="absolute inset-0 skill-bar-animation"></div>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="flex items-center glassmorphism p-4 rounded-lg shadow-xl card-hover-effect">
+                            <i class="fas fa-file-alt text-sky-400 mr-4 text-2xl"></i>
+                            <div class="flex-grow">
+                                <p class="font-medium text-slate-200 mb-1">REXX</p>
+                                <div class="w-full bg-slate-700 rounded-full h-3 relative overflow-hidden">
+                                    <div class="skill-bar-fill bg-gradient-to-r from-purple-400 to-pink-400 h-full rounded-full" style="width: 0%" data-width="71%"></div>
+                                     <div class="absolute inset-0 skill-bar-animation"></div>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="flex items-center glassmorphism p-4 rounded-lg shadow-xl card-hover-effect">
+                            <i class="fas fa-comments text-sky-400 mr-4 text-2xl"></i>
+                            <div class="flex-grow">
+                                <p class="font-medium text-slate-200 mb-1">MQ Series</p>
+                                <div class="w-full bg-slate-700 rounded-full h-3 relative overflow-hidden">
+                                    <div class="skill-bar-fill bg-gradient-to-r from-purple-400 to-pink-400 h-full rounded-full" style="width: 0%" data-width="67%"></div>
+                                     <div class="absolute inset-0 skill-bar-animation"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold mb-8 text-64ffda font-orbitron">Other Skills</h3>
+                    <div class="space-y-6">
+                         <div class="flex items-center glassmorphism p-4 rounded-lg shadow-xl card-hover-effect">
+                            <i class="fas fa-chart-line text-purple-400 mr-4 text-2xl"></i>
+                            <div class="flex-grow">
+                                <p class="font-medium text-slate-200 mb-1">Python (Data Analysis, Dash Plotly)</p>
+                                <div class="w-full bg-slate-700 rounded-full h-3 relative overflow-hidden">
+                                    <div class="skill-bar-fill bg-gradient-to-r from-purple-400 to-pink-400 h-full rounded-full" style="width: 0%" data-width="95%"></div>
+                                     <div class="absolute inset-0 skill-bar-animation"></div>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="flex items-center glassmorphism p-4 rounded-lg shadow-xl card-hover-effect">
+                            <i class="fas fa-flask text-purple-400 mr-4 text-2xl"></i>
+                            <div class="flex-grow">
+                                <p class="font-medium text-slate-200 mb-1">Data Science & Analysis</p>
+                                <div class="w-full bg-slate-700 rounded-full h-3 relative overflow-hidden">
+                                    <div class="skill-bar-fill bg-gradient-to-r from-purple-400 to-pink-400 h-full rounded-full" style="width: 0%" data-width="90%"></div>
+                                     <div class="absolute inset-0 skill-bar-animation"></div>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="flex items-center glassmorphism p-4 rounded-lg shadow-xl card-hover-effect">
+                            <i class="fab fa-java text-purple-400 mr-4 text-2xl"></i>
+                            <div class="flex-grow">
+                                <p class="font-medium text-slate-200 mb-1">Java</p>
+                                <div class="w-full bg-slate-700 rounded-full h-3 relative overflow-hidden">
+                                    <div class="skill-bar-fill bg-gradient-to-r from-purple-400 to-pink-400 h-full rounded-full" style="width: 0%" data-width="70%"></div>
+                                     <div class="absolute inset-0 skill-bar-animation"></div>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="flex items-center glassmorphism p-4 rounded-lg shadow-xl card-hover-effect">
+                            <i class="fas fa-code text-purple-400 mr-4 text-2xl"></i>
+                            <div class="flex-grow">
+                                <p class="font-medium text-slate-200 mb-1">JavaScript, HTML, CSS</p>
+                                <div class="w-full bg-slate-700 rounded-full h-3 relative overflow-hidden">
+                                    <div class="skill-bar-fill bg-gradient-to-r from-purple-400 to-pink-400 h-full rounded-full" style="width: 0%" data-width="85%"></div>
+                                     <div class="absolute inset-0 skill-bar-animation"></div>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="flex items-center glassmorphism p-4 rounded-lg shadow-xl card-hover-effect">
+                            <i class="fas fa-brain text-purple-400 mr-4 text-2xl"></i>
+                            <div class="flex-grow">
+                                <p class="font-medium text-slate-200 mb-1">AI / Machine Learning</p>
+                                <div class="w-full bg-slate-700 rounded-full h-3 relative overflow-hidden">
+                                    <div class="skill-bar-fill bg-gradient-to-r from-purple-400 to-pink-400 h-full rounded-full" style="width: 0%" data-width="85%"></div>
+                                     <div class="absolute inset-0 skill-bar-animation"></div>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="flex items-center glassmorphism p-4 rounded-lg shadow-xl card-hover-effect">
+                            <i class="fas fa-cube text-purple-400 mr-4 text-2xl"></i>
+                            <div class="flex-grow">
+                                <p class="font-medium text-slate-200 mb-1">Big Data Concepts</p>
+                                <div class="w-full bg-slate-700 rounded-full h-3 relative overflow-hidden">
+                                    <div class="skill-bar-fill bg-gradient-to-r from-purple-400 to-pink-400 h-full rounded-full" style="width: 0%" data-width="72%"></div>
+                                     <div class="absolute inset-0 skill-bar-animation"></div>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="flex items-center glassmorphism p-4 rounded-lg shadow-xl card-hover-effect">
+                            <i class="fas fa-users text-purple-400 mr-4 text-2xl"></i>
+                            <div class="flex-grow">
+                                <p class="font-medium text-slate-200 mb-1">People Management</p>
+                                <div class="w-full bg-slate-700 rounded-full h-3 relative overflow-hidden">
+                                    <div class="skill-bar-fill bg-gradient-to-r from-purple-400 to-pink-400 h-full rounded-full" style="width: 0%" data-width="75%"></div>
+                                     <div class="absolute inset-0 skill-bar-animation"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-20">
+                <h3 class="text-2xl font-semibold mb-8 text-64ffda font-orbitron text-center">Language Matrix</h3>
+                <div class="flex flex-wrap justify-center gap-8">
+                    <div class="glassmorphism p-6 rounded-xl text-center w-40 card-hover-effect">
+                        <p class="text-xl font-semibold text-white mb-1">Dutch</p><p class="text-slate-400">Native</p>
+                    </div>
+                    <div class="glassmorphism p-6 rounded-xl text-center w-40 card-hover-effect">
+                        <p class="text-xl font-semibold text-white mb-1">English</p><p class="text-slate-400">Proficient</p>
+                    </div>
+                    <div class="glassmorphism p-6 rounded-xl text-center w-40 card-hover-effect">
+                        <p class="text-xl font-semibold text-white mb-1">French</p><p class="text-slate-400">Advanced</p>
+                    </div>
+                    <div class="glassmorphism p-6 rounded-xl text-center w-40 card-hover-effect">
+                        <p class="text-xl font-semibold text-white mb-1">German</p><p class="text-slate-400">Intermediate</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="passions" class="py-20 md:py-32 fade-slide-section">
+             <h2 class="text-4xl section-title font-bold mb-16 text-center">Passions & <span class="text-white">Principles</span></h2>
+             <p class="text-slate-300 text-center text-lg max-w-3xl mx-auto mb-16 leading-relaxed">
+                 My interests outside of technology significantly influence my approach to problem-solving and innovation. They teach me valuable principles that I apply in my professional work.
+             </p>
+             <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+                 <div class="glassmorphism p-8 rounded-xl text-center interest-card card-hover-effect f1-effect">
+                     <i class="fas fa-flag-checkered interest-icon"></i>
+                     <h3 class="text-xl font-semibold text-white mb-3 font-orbitron">Formula 1</h3>
+                     <p class="text-slate-400 text-sm leading-relaxed">
+                         The pursuit of <span class="text-64ffda font-semibold">marginal gains</span> and continuous optimization. Applies to refining code and processes for peak performance.
+                     </p>
+                 </div>
+                 <div class="glassmorphism p-8 rounded-xl text-center interest-card card-hover-effect chess-effect">
+                     <i class="fas fa-chess-knight interest-icon"></i>
+                     <h3 class="text-xl font-semibold text-white mb-3 font-orbitron">Chess</h3>
+                     <p class="text-slate-400 text-sm leading-relaxed">
+                         Developing <span class="text-64ffda font-semibold">strategic thinking</span>, foresight, and planning complex solutions in dynamic environments.
+                     </p>
+                 </div>
+                 <div class="glassmorphism p-8 rounded-xl text-center interest-card card-hover-effect sports-effect">
+                     <i class="fas fa-basketball-ball interest-icon"></i>
+                     <h3 class="text-xl font-semibold text-white mb-3 font-orbitron">Basketball</h3>
+                     <p class="text-slate-400 text-sm leading-relaxed">
+                         Emphasizing <span class="text-64ffda font-semibold">teamwork</span>, communication, and agile adaptation to changing situations.
+                     </p>
+                 </div>
+                 <div class="glassmorphism p-8 rounded-xl text-center interest-card card-hover-effect sports-effect">
+                     <i class="fas fa-futbol interest-icon"></i>
+                     <h3 class="text-xl font-semibold text-white mb-3 font-orbitron">Football</h3>
+                     <p class="text-slate-400 text-sm leading-relaxed">
+                         Focusing on <span class="text-64ffda font-semibold">execution</span>, coordination, and achieving goals through structured effort.
+                     </p>
+                 </div>
+             </div>
+        </section>
+
+        <section id="experience" class="py-20 md:py-32 fade-slide-section">
+            <h2 class="text-4xl section-title font-bold mb-16 text-center">Professional <span class="text-white">Chronicles</span></h2>
+            <div class="timeline max-w-4xl mx-auto">
+                <div class="timeline-entry card-hover-effect">
+                    <div class="timeline-content glassmorphism p-6 rounded-xl shadow-xl">
+                        <h3 class="text-2xl font-semibold text-white mb-2 font-orbitron">Mainframe Intern</h3>
+                        <p class="text-sky-300 mb-1">Belfius, Brussels, Belgium</p>
+                        <p class="text-sm text-slate-400 mb-4">October 2024 - Present</p>
+                        <p class="text-slate-300 leading-relaxed">
+                            Currently immersed in reporting and analysis of Db2 resource usage. My responsibilities include extracting and analyzing SMF records to detect anomalies, monitor performance, and gain insights into Db2 transactions and package efficiency. I leverage Python and Pandas for data processing and visualization, and utilize the Db2 REST API to enhance reporting and decision-making processes. This work requires the <span class="text-64ffda font-semibold">precision and optimization focus</span> I appreciate in Formula 1, and the <span class="text-64ffda font-semibold">analytical depth</span> found in chess.
+                        </p>
+                         <div class="flex gap-3 mt-4">
+                            <i class="fas fa-flag-checkered text-64ffda text-xl" title="Formula 1 - Optimization"></i>
+                            <i class="fas fa-chess-knight text-64ffda text-xl" title="Chess - Analysis"></i>
+                         </div>
+                    </div>
+                </div>
+                <div class="timeline-entry card-hover-effect">
+                    <div class="timeline-content glassmorphism p-6 rounded-xl shadow-xl">
+                        <h3 class="text-2xl font-semibold text-white mb-2 font-orbitron">Teacher</h3>
+                        <p class="text-sky-300 mb-1">CodeFever, Sint-Niklaas / Beveren-Waas, Belgium</p>
+                        <p class="text-sm text-slate-400 mb-4">September 2022 - June 2024</p>
+                        <p class="text-slate-300 leading-relaxed">
+                            Empowered children to think like coders using platforms like Scratch and Minecraft. Through interactive lessons and hands-on activities, I helped students grasp complex programming concepts in a fun and engaging manner, fostering their creativity and problem-solving abilities. This role highlighted the importance of <span class="text-64ffda font-semibold">clear communication and adapting strategy</span>, much like coaching a team in basketball or football.
+                        </p>
+                         <div class="flex gap-3 mt-4">
+                            <i class="fas fa-basketball-ball text-64ffda text-xl" title="Basketball - Teamwork"></i>
+                            <i class="fas fa-futbol text-64ffda text-xl" title="Football - Strategy"></i>
+                         </div>
+                    </div>
+                </div>
+                <div class="timeline-entry card-hover-effect">
+                    <div class="timeline-content glassmorphism p-6 rounded-xl shadow-xl">
+                        <h3 class="text-2xl font-semibold text-white mb-2 font-orbitron">Teacher Assistant</h3>
+                        <p class="text-sky-300 mb-1">CodeFever, Sint-Niklaas, Belgium</p>
+                        <p class="text-sm text-slate-400 mb-4">July 2022</p>
+                        <p class="text-slate-300 leading-relaxed">
+                            Supported coding workshops by providing direct assistance to students, troubleshooting issues, and contributing to a positive and collaborative learning environment. This reinforced the value of team support and working effectively with others towards a shared educational goal.                        </p>
+                         <div class="flex gap-3 mt-4">
+                            <i class="fas fa-users text-64ffda text-xl" title="Teamwork"></i>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="py-20 md:py-32 fade-slide-section">
+            <h2 class="text-4xl section-title font-bold mb-16 text-center">Project <span class="text-white">Blueprints</span></h2>
+            <div class="grid md:grid-cols-2 gap-10">
+            <div class="glassmorphism p-6 rounded-xl shadow-xl flex flex-col project-card card-hover-effect">
+                <img src="./webpage2.png" alt="Webpage Db2 Screenshot" class="rounded-md mb-6 object-cover h-48 w-full border border-slate-700">
+                <h3 class="text-2xl font-semibold text-white mb-3 font-orbitron">Db2 Learning Webpage</h3>
+                <p class="text-sm text-slate-400 mb-4">Bachelor Thesis | October 2024 - Present</p>
+                <p class="text-slate-300 leading-relaxed flex-grow mb-6">
+                Developed an interactive webpage designed to teach Db2 concepts, encompassing both theoretical knowledge and practical exercises. This project serves as my bachelor thesis. Building this platform required <span class="text-64ffda font-semibold">structured planning and execution</span>, much like setting up a play in football.
+                </p>
+                <a href="https://tomdeloddere.github.io/WebpageDB2/" target="_blank" rel="noopener noreferrer" class="project-link">
+                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 12.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" />
+                    <path fill-rule="evenodd" d="M.664 10.59a1.651 1.651 0 010-1.186A10.004 10.004 0 0110 3c4.257 0 7.893 2.66 9.336 6.41.147.381.146.804 0 1.186A10.004 10.004 0 0110 17c-4.257 0-7.893-2.66-9.336-6.41zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+                </svg>
+                View Project
+                </a>
+            </div>
+            <div class="glassmorphism p-6 rounded-xl shadow-xl flex flex-col project-card card-hover-effect">
+                 <img src="./dashboard.png" alt="SMF Dashboard Screenshot" class="rounded-md mb-6 object-cover h-48 w-full border border-slate-700">
+                <h3 class="text-2xl font-semibold text-white mb-3 font-orbitron">SMF Records Dashboard</h3>
+                <p class="text-sm text-slate-400 mb-4">Data Visualization | October 2024 - Present</p>
+                <p class="text-slate-300 leading-relaxed flex-grow mb-6">
+                Created a dynamic dashboard using Dash Plotly (Python) to visualize and analyze SMF records, providing accessible insights into mainframe transaction data. Visualizing complex data is akin to a coach analyzing game statistics to find patterns and <span class="text-64ffda font-semibold">strategize for optimal performance</span>.
+                </p>
+                <a href="https://www.youtube.com/watch?v=7L7DMSlq8jA" target="_blank" rel="noopener noreferrer" class="project-link">
+                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C.488 3.411 0 5.846 0 12s.488 8.589 4.385 8.816c3.6.245 11.626.246 15.23 0C23.512 20.589 24 18.154 24 12s-.488-8.589-4.385-8.816zM9.75 15.562V8.438L15.812 12 9.75 15.562z"/>
+                </svg>
+                Watch Video Demo
+                </a>
+            </div>
+            </div>
+        </section>
+
+        <section id="education" class="py-20 md:py-32 fade-slide-section">
+            <h2 class="text-4xl section-title font-bold mb-16 text-center">Foundations & <span class="text-white">Credentials</span></h2>
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                <div class="glassmorphism p-8 rounded-xl shadow-xl card-hover-effect">
+                    <h3 class="text-2xl font-semibold text-64ffda mb-6 font-orbitron">Education</h3>
+                    <div class="mb-8">
+                        <h4 class="text-xl font-medium text-white mb-1">Bachelor's Degree, Applied Information Technology</h4>
+                        <p class="text-sky-300 mb-1">HOGENT University of Applied Sciences and Arts</p>
+                        <p class="text-sm text-slate-400">September 2021 - June 2025 (Expected)</p>
+                        <p class="text-slate-300 leading-relaxed mt-2">Throughout my Applied Information Technology studies, I've developed a strong understanding of modern software development practices. My academic journey included a valuable exploration of data science and artificial intelligence in my second year, leading to a specialized focus on mainframe technologies in my final year, equipping me to drive future innovation.
+                        </p>
+                    </div>
+                    <div class="mb-8">
+                        <h4 class="text-xl font-medium text-white mb-1">Business Administration</h4>
+                        <p class="text-sky-300 mb-1">University of Ghent</p>
+                        <p class="text-sm text-slate-400">September 2019 - June 2021</p>
+                        <p class="text-slate-300 leading-relaxed mt-2">
+                            During my time studying Business Administration, I gained valuable insights into the economic landscape and management principles, particularly enjoying the economics and management courses. This experience provided a broader perspective on business operations, which complements my technical skills. While some subjects like law and bookkeeping were less aligned with my interests, the program fostered a strong foundation in analytical thinking and strategic planning.
+                        </p>
+                    </div>
+                </div>
+                <div class="glassmorphism p-8 rounded-xl shadow-xl card-hover-effect">
+                    <h3 class="text-2xl font-semibold text-64ffda mb-6 font-orbitron">Certifications & Learning</h3>
+                    <p class="text-slate-300 mb-6 leading-relaxed">Demonstrating continuous learning and expertise in key technologies and management principles through various certifications.</p>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <svg class="w-6 h-6 text-64ffda mr-4 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812z m6.569 4.769a.75.75 0 01.28 1.03l-3.5 4.5a.75.75 0 01-1.154.114l-1.5-1.5a.75.75 0 111.06-1.06l.97.97 3.071-3.937a.75.75 0 011.03-.28z" clip-rule="evenodd"></path></svg>
+                            <p class="text-slate-200">Introduction to Data Fabric with IBM Cloud Pak for Data (IBM)</p>
+                        </div>
+                         <div class="flex items-center">
+                            <svg class="w-6 h-6 text-64ffda mr-4 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm6.469 4.469a.75.75 0 01.28 1.03l-3.5 4.5a.75.75 0 01-1.154.114l-1.5-1.5a.75.75 0 111.06-1.06l.97.97 3.071-3.937a.75.75 0 011.03-.28z" clip-rule="evenodd"></path></svg>
+                            <p class="text-slate-200">COBOL Programming with VSCode (IBM)</p>
+                        </div>
+                         <div class="flex items-center">
+                            <svg class="w-6 h-6 text-64ffda mr-4 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm6.469 4.469a.75.75 0 01.28 1.03l-3.5 4.5a.75.75 0 01-1.154.114l-1.5-1.5a.75.75 0 111.06-1.06l.97.97 3.071-3.937a.75.75 0 011.03-.28z" clip-rule="evenodd"></path></svg>
+                            <p class="text-slate-200">COBOL Fundamentals (Rocket Software)</p>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-6 h-6 text-64ffda mr-4 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm6.469 4.469a.75.75 0 01.28 1.03l-3.5 4.5a.75.75 0 01-1.154.114l-1.5-1.5a.75.75 0 111.06-1.06l.97.97 3.071-3.937a.75.75 0 011.03-.28z" clip-rule="evenodd"></path></svg>
+                            <p class="text-slate-200">z/OS REXX Programming (IBM)</p>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-6 h-6 text-64ffda mr-4 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm6.469 4.469a.75.75 0 01.28 1.03l-3.5 4.5a.75.75 0 01-1.154.114l-1.5-1.5a.75.75 0 111.06-1.06l.97.97 3.071-3.937a.75.75 0 011.03-.28z" clip-rule="evenodd"></path></svg>
+                            <p class="text-slate-200">Modernize Applications with IBM CICS (IBM)</p>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-6 h-6 text-64ffda mr-4 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm6.469 4.469a.75.75 0 01.28 1.03l-3.5 4.5a.75.75 0 01-1.154.114l-1.5-1.5a.75.75 0 111.06-1.06l.97.97 3.071-3.937a.75.75 0 011.03-.28z" clip-rule="evenodd"></path></svg>
+                            <p class="text-slate-200">Essential Lessons for First-Time Managers (LinkedIn)</p>
+                        </div>
+                    </div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="achievements" class="py-20 md:py-32 fade-slide-section">
+            <h2 class="text-4xl section-title font-bold mb-16 text-center">Key <span class="text-white">Achievements</span></h2>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+                <div class="glassmorphism p-8 rounded-xl text-center card-hover-effect">
+                    <div class="text-5xl text-64ffda mb-4"><i class="fas fa-rocket"></i></div>
+                    <h3 class="text-xl font-semibold text-white mb-3 font-orbitron">Enhanced Db2 Efficiency</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Improved Db2 transaction efficiency through advanced data analysis and optimization techniques.</p>
+                </div>
+                <div class="glassmorphism p-8 rounded-xl text-center card-hover-effect">
+                    <div class="text-5xl text-64ffda mb-4"><i class="fas fa-cogs"></i></div>
+                    <h3 class="text-xl font-semibold text-white mb-3 font-orbitron">Optimized Mainframe Ops</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Analyzed SMF records to identify bottlenecks and optimize mainframe operations for better performance.</p>
+                </div>
+                <div class="glassmorphism p-8 rounded-xl text-center card-hover-effect">
+                    <div class="text-5xl text-64ffda mb-4"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <h3 class="text-xl font-semibold text-white mb-3 font-orbitron">Coding Instructor Success</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Successfully taught coding fundamentals to over 50 students, fostering a new generation of tech enthusiasts.</p>
+                </div>
+                <div class="glassmorphism p-8 rounded-xl text-center card-hover-effect">
+                    <div class="text-5xl text-64ffda mb-4"><i class="fas fa-trophy"></i></div>
+                    <h3 class="text-xl font-semibold text-white mb-3 font-orbitron">IBM Certification Expertise</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Achieved three significant IBM certifications, validating deep expertise in core mainframe technologies.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-20 md:py-32 fade-slide-section">
+            <h2 class="text-4xl section-title font-bold mb-16 text-center">Let's <span class="text-white">Connect</span></h2>
+            <div class="max-w-3xl mx-auto glassmorphism p-8 md:p-12 rounded-xl shadow-2xl card-hover-effect">
+                <p class="text-slate-300 text-center text-lg mb-10 leading-relaxed">
+                    Looking to start my career in Mainframe Technology and eager to contribute my skills to a dynamic team. If you have an entry-level opportunity or would like to discuss my background, please feel free to reach out through the channels below. I welcome the opportunity to connect!                </p>
+                <div class="space-y-6 mb-10">
+                    <a href="https://www.linkedin.com/in/tom-deloddere/" target="_blank" rel="noopener noreferrer" class="flex items-center p-4 bg-slate-800/60 rounded-lg hover:bg-slate-700/80 transition-all duration-300 group card-hover-effect contact-link">
+                        <svg class="w-7 h-7 text-64ffda mr-5 shrink-0 group-hover:text-00bfff" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        <span class="text-slate-200 text-lg group-hover:text-white font-orbitron">linkedin.com/in/tom-deloddere</span>
+                    </a>
+                    <div class="flex items-center p-4 bg-slate-800/60 rounded-lg group card-hover-effect contact-link">
+                        <a href="https://www.google.com/maps/place/Sint-Niklaas/" target="_blank" rel="noopener noreferrer" class="flex items-center w-full">
+                        <svg class="w-7 h-7 text-64ffda mr-5 shrink-0 group-hover:text-00bfff" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        <span class="text-slate-200 text-lg group-hover:text-white font-orbitron">Sint-Niklaas, Belgium (Willing To Relocate Globally)</span>
+                        </a>
+                    </div>
+                     <a href="ResumeTomDeloddere.pdf" target="_blank" rel="noopener noreferrer" class="flex items-center p-4 bg-slate-800/60 rounded-lg hover:bg-slate-700/80 transition-all duration-300 group card-hover-effect contact-link">
+                        <svg class="w-7 h-7 text-64ffda mr-5 shrink-0 group-hover:text-00bfff" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                        </svg>
+                        <span class="text-slate-200 text-lg group-hover:text-white font-orbitron">Download Resume</span>
+                    </a>
+                </div>
+                <p class="text-center text-slate-400 text-sm">
+                    Looking forward to hearing from you and exploring new frontiers!
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center py-10 border-t border-slate-700/50">
+        <p class="text-slate-400">© <span id="currentYear"></span> Tom Deloddere.</p>
+        <p class="text-xs text-slate-500 mt-2">Designed with a passion for technology and a drive for excellence.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const headerOffset = document.querySelector('header').offsetHeight;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+
+                // Close mobile menu after clicking a link
+                if (window.innerWidth <= 768) {
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+
+                // Active link styling - handled by scroll listener for better accuracy
+            });
+        });
+
+        // Intersection Observer for fade-slide sections and skill bars
+        const sections = document.querySelectorAll('.fade-slide-section');
+        const skillBars = document.querySelectorAll('.skill-bar-fill');
+
+        const sectionObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // Animate skill bars when the skills section is visible
+                    if (entry.target.id === 'skills') {
+                        skillBars.forEach(bar => {
+                             // Use requestAnimationFrame to ensure the style change is applied before the transition
+                             requestAnimationFrame(() => {
+                                 bar.style.width = bar.dataset.width;
+                             });
+                        });
+                    }
+                    //observer.unobserve(entry.target);
+                    // Optional: unobserve after animation if you only want it to happen once
+                    // observer.unobserve(entry.target);
+                } else {
+                     // Optional: Reset skill bars when section is not visible
+                     if (entry.target.id === 'skills') {
+                        skillBars.forEach(bar => {
+                             requestAnimationFrame(() => {
+                                bar.style.width = '0%';
+                             });
+                        });
+                    }
+                     entry.target.classList.remove('is-visible'); // Remove class when not visible
+                }
+            });
+        }, { threshold: 0.2, rootMargin: "0px 0px -10% 0px" }); // Trigger when 20% of the section is visible, adjusted rootMargin
+
+        sections.forEach(section => {
+            sectionObserver.observe(section);
+        });
+
+        // Active navigation link highlighting on scroll
+        const navLinks = document.querySelectorAll('nav a.nav-link');
+        const pageSections = document.querySelectorAll('section[id]');
+         const headerHeight = document.querySelector('header').offsetHeight; // Get header height once
+
+        function updateActiveNavLink() {
+            let currentSectionId = '';
+            const scrollY = window.pageYOffset;
+
+            pageSections.forEach(section => {
+                // Add a buffer to the section top to activate the link slightly before the section reaches the very top
+                const sectionTop = section.offsetTop - headerHeight - 100;
+                const sectionHeight = section.offsetHeight;
+                 if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                    currentSectionId = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                // Handle the case where the user is at the very top of the page
+                if (currentSectionId === '' && window.pageYOffset < document.querySelector('#about').offsetTop - headerHeight - 100 && link.getAttribute('href') === '#hero') {
+                     link.classList.add('active');
+                } else if (link.getAttribute('href') === `#${currentSectionId}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        window.addEventListener('scroll', updateActiveNavLink);
+        window.addEventListener('load', updateActiveNavLink); // Call on load
+        updateActiveNavLink(); // Call initially
+
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+
+        // Hero Background Animation (Simple Node/Line Canvas)
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        const nodes = [];
+        const numNodes = 50;
+        const maxDist = 150; // Increased max distance for lines
+
+        function resizeCanvas() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            // Recreate nodes on resize to distribute them correctly
+            createNodes();
+        }
+
+        class Node {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.5; // Slower movement
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.radius = Math.random() * 1.5 + 0.5; // Smaller nodes
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                // Wrap around edges
+                if (this.x < 0) this.x = width;
+                if (this.x > width) this.x = 0;
+                if (this.y < 0) this.y = height;
+                if (this.y > height) this.y = 0;
+            }
+
+            draw() {
+                ctx.fillStyle = '#64ffda'; // Teal nodes
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function createNodes() {
+            nodes.length = 0; // Clear existing nodes
+            for (let i = 0; i < numNodes; i++) {
+                nodes.push(new Node());
+            }
+        }
+
+        function drawLines() {
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const dist = Math.sqrt((nodes[i].x - nodes[j].x)**2 + (nodes[i].y - nodes[j].y)**2);
+                    if (dist < maxDist) {
+                        ctx.strokeStyle = `rgba(100, 255, 218, ${1 - dist / maxDist})`; // Teal lines, fades with distance
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(nodes[i].x, nodes[i].y);
+                        ctx.lineTo(nodes[j].x, nodes[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animateBackground() {
+            ctx.clearRect(0, 0, width, height);
+            ctx.fillStyle = '#0a0a1a'; // Draw background explicitly
+            ctx.fillRect(0, 0, width, height);
+
+            nodes.forEach(node => {
+                node.update();
+                node.draw();
+            });
+
+            drawLines();
+
+            requestAnimationFrame(animateBackground);
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas(); // Initial resize and node creation
+        animateBackground();
+
+
+        // Particle Cursor Trail Effect
+        const particleContainer = document.getElementById('particle-container');
+
+        document.addEventListener('mousemove', (e) => {
+            createParticle(e.clientX, e.clientY);
+        });
+
+        function createParticle(x, y) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                // Randomize trajectory slightly for a more organic feel
+                const angle = Math.random() * Math.PI * 2;
+                const velocity = Math.random() * 2 + 1;
+                particle.style.setProperty('--vx', Math.cos(angle) * velocity);
+                particle.style.setProperty('--vy', Math.sin(angle) * velocity);
+
+                particle.style.left = `${x}px`;
+                particle.style.top = `${y}px`;
+                particleContainer.appendChild(particle);
+
+                particle.addEventListener('animationend', () => particle.remove());
+            }
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+
+    </script>
+</body>
+</html>
